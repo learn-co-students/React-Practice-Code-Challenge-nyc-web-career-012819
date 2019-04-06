@@ -9,7 +9,8 @@ class App extends Component {
   state = {
     sushis: [],
     currentSushi: [],
-    budget: 100
+    budget: 100,
+    number: ""
   };
 
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends Component {
   }
 
   handleClick = sushi => {
+    console.log(sushi);
     this.setState({
       ...this.state,
       currentSushi: [...this.state.currentSushi, sushi],
@@ -26,10 +28,55 @@ class App extends Component {
     });
   };
 
+  handleChange = e => {
+    if (!isNaN(parseInt(e.target.value))) {
+      this.setState(
+        {
+          ...this.state,
+          number: parseInt(e.target.value)
+        },
+        () => console.log(this.state.number)
+      );
+    } else {
+      this.setState(
+        {
+          ...this.state,
+          number: ""
+        },
+        alert("number only")
+      );
+    }
+  };
+  // bonus: adding more money
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState(
+      {
+        ...this.state,
+        budget: this.state.budget + this.state.number
+      },
+      () => {
+        this.setState({
+          ...this.state,
+          number: ""
+        });
+      }
+    );
+  };
+
   render() {
-    console.log(this.state.currentSushi);
+    // console.log(this.state.currentSushi);)
     return (
       <div className="app">
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="number"
+            value={this.state.number}
+            onChange={this.handleChange}
+          />
+          <button>Add Budget</button>
+        </form>
         <SushiContainer
           allSushis={this.state.sushis}
           handleClick={this.handleClick}

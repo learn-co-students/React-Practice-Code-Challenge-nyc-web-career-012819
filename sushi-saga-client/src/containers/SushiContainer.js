@@ -5,14 +5,25 @@ import Sushi from "../components/Sushi";
 class SushiContainer extends React.Component {
   state = {
     start: 0,
-    end: 4
+    end: 4,
+    pageNumber: 1
   };
-
+  // bonus, if else condition will make the page go back to the first four.
+  // to make the plates stay empty, ...?
   nextSushi = () => {
-    this.setState({
-      start: this.state.start + 4,
-      end: this.state.end + 4
-    });
+    if (this.state.pageNumber <= 25) {
+      this.setState({
+        start: this.state.start + 4,
+        end: this.state.end + 4,
+        pageNumber: this.state.pageNumber + 1
+      });
+    } else {
+      this.setState({
+        start: 0,
+        end: 4,
+        pageNumber: 1
+      });
+    }
   };
 
   render() {
