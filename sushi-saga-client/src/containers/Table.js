@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react'
-let num = 0
 const Table = (props) => {
 
   const renderPlates = (array) => {
     return array.map((x, index) => {
-      return <div className="empty-plate" key={num++} style={{ top: -7 * index }}/>
+      return <div className="empty-plate" key={index} style={{ top: -7 * index }}/>
     })
   }
 

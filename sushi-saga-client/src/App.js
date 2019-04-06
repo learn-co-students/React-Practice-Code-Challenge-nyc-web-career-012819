@@ -19,9 +19,7 @@ class App extends Component {
     fetch(API)
       .then(resp => resp.json())
       .then(sushis => {
-        this.setState({sushis: sushis})
-        this.setState({fourSushis: sushis.slice(0,4)})
-
+        this.setState({sushis: sushis, fourSushis: sushis.slice(0,4)})
       })
   }
 

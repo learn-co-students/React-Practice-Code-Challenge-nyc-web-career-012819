@@ -18,7 +18,7 @@ class Sushi extends Component {
       <div className="sushi">
         <div className="plate"
              onClick={this.clickHandler}>
-          {this.state.clicked ? '': <img id={this.props.sushi.id} alt='' src={this.props.sushi.img_url} width="100%" />
+          {this.state.clicked ? null: <img id={this.props.sushi.id} alt='' src={this.props.sushi.img_url} width="100%" />
           }
         </div>
         <h4 className="sushi-details">
